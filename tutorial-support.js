@@ -113,3 +113,24 @@ window.resetTutorial = () => {
     if (typeof gsap !== 'undefined') gsap.killTweensOf('.restaurant-card');
     document.querySelector('#restaurant-cards').replaceChildren();
 };
+
+// Error handlers used by the student work file.
+export function handleChartError(error) {
+    console.error('Chart creation failed:', error);
+    document.querySelector('#chart-message').textContent = 'Chart creation failed. Check the console for details.';
+}
+
+export function handleMapError(error) {
+    console.error('Map creation failed:', error);
+    document.querySelector('#map-message').textContent = 'Map creation failed. Check the console for details.';
+}
+
+export function handleAnimationError(error) {
+    console.error('Animation creation failed:', error);
+    createRestaurantCards();
+    document.querySelectorAll('.restaurant-card').forEach(function(card) {
+        card.style.opacity = '1';
+        card.style.transform = 'none';
+    });
+    document.querySelector('#animation-message').textContent = 'Animation failed. Showing static restaurant cards.';
+}
